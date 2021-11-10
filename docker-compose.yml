@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INIT_DB}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INIT_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INIT_ROOT_PASSWORD}
+    ports:
+      - "27017:${MONGO_PORT}"
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:${POSTGRES_PORT}"
+
+  #cassandra:
+  #  image: cassandra:latest
+  #  environment:
+  #    MAX_HEAP_SIZE: ${CASSANDRA_MAX_HEAP_SIZE}
+  #    HEAP_NEWSIZE: ${CASSANDRA_HEAP_NEWSIZE}
+  #  ports:
+  #    - "9042:${CASSANDRA_PORT}"
