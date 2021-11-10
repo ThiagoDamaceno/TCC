@@ -1,5 +1,5 @@
 import { getEstadosInArray } from '../../../dadosParaTestes/getEstadosInArray'
-import { InserirVariosEstadosMongo } from '../../../repositorios/mongo/implementacoes/InserirVariosEstadosMongo'
+import { InserirVariosEstadosMongo } from '../../../repositorios/mongo/implementacoes/estados/InserirVariosEstadosMongo'
 import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
 

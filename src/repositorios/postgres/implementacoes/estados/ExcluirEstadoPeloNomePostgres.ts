@@ -1,6 +1,6 @@
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { ClientePostgres } from '../ClientePostgres'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { ClientePostgres } from '../../ClientePostgres'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
 class ExcluirEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
   public queryObj: { updateQuery: string, values: string[] }

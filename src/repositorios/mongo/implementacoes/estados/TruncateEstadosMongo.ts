@@ -1,6 +1,6 @@
-import { ClienteMongo } from '../ClienteMongo'
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { ClienteMongo } from '../../ClienteMongo'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
 class TruncateEstadosMongo extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
   public queryObj: { }

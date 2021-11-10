@@ -1,4 +1,4 @@
-import { BuscarEstadoPeloNomePostgres } from '../../repositorios/postgres/implementacoes/BuscarEstadoPeloNomePostgres'
+import { BuscarEstadoPeloNomePostgres } from '../../repositorios/postgres/implementacoes/estados/BuscarEstadoPeloNomePostgres'
 import { AbstractTeste } from '../AbstractTeste'
 import { ITeste } from '../ITeste'
 

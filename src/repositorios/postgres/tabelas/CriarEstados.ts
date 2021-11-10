@@ -9,7 +9,7 @@ class CriarEstados {
 
       const createTableCommand = `
         CREATE TABLE IF NOT EXISTS ${CriarEstados.TABLE_NAME} (
-          id SERIAL PRIMARY KEY,
+          id VARCHAR(255) PRIMARY KEY,
           nome VARCHAR(255) NOT NULL,
           regiao VARCHAR(255) NOT NULL
         );

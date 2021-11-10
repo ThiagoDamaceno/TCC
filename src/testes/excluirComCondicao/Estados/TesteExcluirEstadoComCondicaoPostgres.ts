@@ -1,6 +1,6 @@
 import { AbstractTeste } from '../../AbstractTeste'
 import { ITeste } from '../../ITeste'
-import { ExcluirEstadoPeloNomePostgres } from '../../../repositorios/postgres/implementacoes/ExcluirEstadoPeloNomePostgres'
+import { ExcluirEstadoPeloNomePostgres } from '../../../repositorios/postgres/implementacoes/estados/ExcluirEstadoPeloNomePostgres'
 
 class TesteExcluirEstadoComCondicaoPostgres extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor

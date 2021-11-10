@@ -1,8 +1,8 @@
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { ClientePostgres } from '../ClientePostgres'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { ClientePostgres } from '../../ClientePostgres'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class AlterarPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
+class AlterarEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
   public queryObj: { updateQuery: string, values: string[] }
 
   constructor (public filter: string, public newValue: string) {
@@ -28,4 +28,4 @@ class AlterarPeloNomePostgres extends AbastractRepositorioEstados implements IRe
   }
 }
 
-export { AlterarPeloNomePostgres }
+export { AlterarEstadoPeloNomePostgres }

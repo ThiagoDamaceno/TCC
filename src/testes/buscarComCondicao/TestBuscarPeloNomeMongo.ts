@@ -1,4 +1,4 @@
-import { BuscarPeloNomeMongo } from '../../repositorios/mongo/implementacoes/BuscarPeloNomeMongo'
+import { BuscarPeloNomeMongo } from '../../repositorios/mongo/implementacoes/estados/BuscarPeloNomeMongo'
 import { AbstractTeste } from '../AbstractTeste'
 import { ITeste } from '../ITeste'
 

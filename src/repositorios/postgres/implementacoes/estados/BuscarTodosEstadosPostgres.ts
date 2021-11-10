@@ -1,7 +1,7 @@
-import { Estado } from '../../../modelos/Estado'
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { ClientePostgres } from '../ClientePostgres'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { Estado } from '../../../../modelos/Estado'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { ClientePostgres } from '../../ClientePostgres'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
 class BuscarTodosEstadosPostgres extends AbastractRepositorioEstados implements IRepositorioEstados<Estado[] | undefined> {
   public queryObj: { selectAllQuery: string }

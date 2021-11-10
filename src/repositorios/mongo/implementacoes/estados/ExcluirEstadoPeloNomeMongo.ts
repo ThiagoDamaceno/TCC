@@ -1,6 +1,6 @@
 import { ClienteMongo } from '../ClienteMongo'
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
 class ExcluirEstadoPeloNomeMongo extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
   public queryObj: { filter: string }

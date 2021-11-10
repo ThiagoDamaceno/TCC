@@ -1,6 +1,6 @@
 import { AbstractTeste } from '../../AbstractTeste'
 import { ITeste } from '../../ITeste'
-import { ExcluirEstadoPeloNomeMongo } from '../../../repositorios/mongo/implementacoes/ExcluirEstadoPeloNomeMongo'
+import { ExcluirEstadoPeloNomeMongo } from '../../../repositorios/mongo/implementacoes/estados/ExcluirEstadoPeloNomeMongo'
 
 class TesteExcluirEstadoComCondicaoMongo extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor

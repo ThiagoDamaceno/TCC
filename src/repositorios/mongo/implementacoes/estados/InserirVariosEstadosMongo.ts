@@ -1,7 +1,7 @@
-import { ClienteMongo } from '../ClienteMongo'
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { Estado } from '../../../modelos/Estado'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { ClienteMongo } from '../../ClienteMongo'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { Estado } from '../../../../modelos/Estado'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
 class InserirVariosEstadosMongo extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
   public queryObj: { estados: Estado[] }

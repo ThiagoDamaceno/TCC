@@ -7,12 +7,14 @@ import { TestBuscarTodosEstadosMongo } from './testes/buscarTodos/Estados/TestBu
 import { TestBuscarTodosEstadosPostgres } from './testes/buscarTodos/Estados/TestBuscarTodosEstadosPostgres'
 import { TestBuscarPeloNomeMongo } from './testes/buscarComCondicao/TestBuscarPeloNomeMongo'
 import { TestBuscarEstadoPeloNomePostgres } from './testes/buscarComCondicao/TestBuscarEstadoPeloNomePostgres'
-import { InserirVariosEstadosMongo } from './repositorios/mongo/implementacoes/InserirVariosEstadosMongo'
+import { InserirVariosEstadosMongo } from './repositorios/mongo/implementacoes/estados/InserirVariosEstadosMongo'
 import { getEstadosInArray } from './dadosParaTestes/getEstadosInArray'
 import { Estado } from './modelos/Estado'
-import { InserirVariosEstadosPostgres } from './repositorios/postgres/implementacoes/InserirVariosEstadosPostgres'
-import { TestAlterarPeloNomeMongo } from './testes/alterarComCondicao/Estados/TestAlterarPeloNomeMongo'
-import { TestAlterarPeloNomePostgres } from './testes/alterarComCondicao/Estados/TestAlterarPeloNomePostgres'
+import { InserirVariosEstadosPostgres } from './repositorios/postgres/implementacoes/estados/InserirVariosEstadosPostgres'
+import { TestAlterarEstadoPeloNomeMongo } from './testes/alterarComCondicao/Estados/TestAlterarEstadoPeloNomeMongo'
+import { TestAlterarEstadoPeloNomePostgres } from './testes/alterarComCondicao/Estados/TestAlterarEstadoPeloNomePostgres'
+import { BuscarTodosEstadosMongo } from './repositorios/mongo/implementacoes/estados/BuscarTodosEstadosMongo'
+import { BuscarTodosEstadosPostgres } from './repositorios/postgres/implementacoes/estados/BuscarTodosEstadosPostgres'
 dotenv.config()
 
 class Index {
@@ -45,10 +47,10 @@ class Index {
   }
 
   async executeTestsUpdateByName (): Promise<void> {
-    const timeMillisecondsFindByNomeMongo = await (new TestAlterarPeloNomeMongo()).getInMilliseconds()
+    const timeMillisecondsFindByNomeMongo = await (new TestAlterarEstadoPeloNomeMongo()).getInMilliseconds()
     console.log(`Tempo gasto update by nome mongo: ${timeMillisecondsFindByNomeMongo}ms`)
 
-    const timeMillisecondsFindByNomePostgres = await (new TestAlterarPeloNomePostgres()).getInMilliseconds()
+    const timeMillisecondsFindByNomePostgres = await (new TestAlterarEstadoPeloNomePostgres()).getInMilliseconds()
     console.log(`Tempo gasto update by nome postgres: ${timeMillisecondsFindByNomePostgres}ms`)
   }
 }
@@ -59,8 +61,17 @@ async function init () {
   console.log('Testes iniciados')
   console.log('')
 
-  // console.log(await (new BuscarTodosEstadosMongo()).execute())
-  // console.log(await (new BuscarTodosEstadosPostgres()).execute())
+  console.log(await (new BuscarTodosEstadosMongo()).execute())
+  console.log(await (new BuscarTodosEstadosPostgres()).execute())
+}
+
+// eslint-disable-next-line no-unused-vars
+async function initTesteInserirTodos () {
+  const index = new Index()
+
+  await index.createDatabases()
+
+  await index.executeTestsInsertAll()
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -103,4 +114,4 @@ async function initTestsUpdateEstadoByNome () {
 }
 
 init()
-initTestsUpdateEstadoByNome()
+// initTesteInserirTodos()

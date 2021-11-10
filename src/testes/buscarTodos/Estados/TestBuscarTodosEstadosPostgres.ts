@@ -1,6 +1,6 @@
 import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
-import { BuscarTodosEstadosPostgres } from '../../../repositorios/postgres/implementacoes/BuscarTodosEstadosPostgres'
+import { BuscarTodosEstadosPostgres } from '../../../repositorios/postgres/implementacoes/estados/BuscarTodosEstadosPostgres'
 
 class TestBuscarTodosEstadosPostgres extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor

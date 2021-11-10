@@ -1,8 +1,11 @@
-class Municipio {
+import { AbstractModel } from './AbstractModel'
+
+class Municipio extends AbstractModel {
   public pagamentosBolsaFamilha: any[] = []
   public constructor (
     public codigoIbge: string, public nome: string, public latitude:string, public longitude: string, public capital: number, pagamentosBolsaFamilha: any[]
   ) {
+    super()
     this.setPagamentosBolsaFamilha(pagamentosBolsaFamilha)
   }
 

@@ -1,7 +1,7 @@
-import { Estado } from '../../../modelos/Estado'
-import { IRepositorioEstados } from '../../IRepositorioEstados'
-import { ClientePostgres } from '../ClientePostgres'
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { Estado } from '../../../../modelos/Estado'
+import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { ClientePostgres } from '../../ClientePostgres'
+import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
 class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
   public queryObj: { insertQuery: string, values: string[] }
@@ -11,7 +11,7 @@ class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implement
 
     let valuesInsert = ''
     estados.forEach((_estado, i) => {
-      let string = `($${(i * 2) + 1}, $${(i * 2) + 2})`
+      let string = `($${(i * 3) + 1}, $${(i * 3) + 2}, $${(i * 3) + 3})`
 
       if (i !== estados.length - 1) { string += ', ' }
 
@@ -19,11 +19,12 @@ class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implement
     })
 
     const insertQuery = `
-        INSERT INTO ${this.SCHEMA_NAME} (nome, regiao) values ${valuesInsert}
+        INSERT INTO ${this.SCHEMA_NAME} (id, nome, regiao) values ${valuesInsert}
       `
 
     const values: string[] = []
     estados.forEach(estado => {
+      values.push(estado.id!)
       values.push(estado.nome)
       values.push(estado.regiao)
     })

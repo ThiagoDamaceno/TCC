@@ -1,6 +1,6 @@
 import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
-import { BuscarTodosEstadosMongo } from '../../../repositorios/mongo/implementacoes/BuscarTodosEstadosMongo'
+import { BuscarTodosEstadosMongo } from '../../../repositorios/mongo/implementacoes/estados/BuscarTodosEstadosMongo'
 
 class TestBuscarTodosEstadosMongo extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor

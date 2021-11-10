@@ -1,15 +1,15 @@
 import { AbstractTeste } from '../../AbstractTeste'
 import { ITeste } from '../../ITeste'
-import { AlterarPeloNomeMongo } from '../../../repositorios/mongo/implementacoes/AlterarPeloNomeMongo'
+import { AlterarEstadoPeloNomeMongo } from '../../../repositorios/mongo/implementacoes/estados/AlterarEstadoPeloNomeMongo'
 
-class TestAlterarPeloNomeMongo extends AbstractTeste implements ITeste {
+class TestAlterarEstadoPeloNomeMongo extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor
   public constructor () {
     super()
   }
 
   async getInMilliseconds (): Promise<number> {
-    const updateEstadoByNamo = new AlterarPeloNomeMongo('Distrito Federal', 'Brasília')
+    const updateEstadoByNamo = new AlterarEstadoPeloNomeMongo('Distrito Federal', 'Brasília')
 
     const timeInMilliseconds = await this.getFunctionPerformanceInMilliseconds(async () => {
       await updateEstadoByNamo.execute()
@@ -19,4 +19,4 @@ class TestAlterarPeloNomeMongo extends AbstractTeste implements ITeste {
   }
 }
 
-export { TestAlterarPeloNomeMongo }
+export { TestAlterarEstadoPeloNomeMongo }
