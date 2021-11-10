@@ -1,5 +1,5 @@
-import { Estado } from '../../../models/Estado'
-import { IRepositorioEstados } from '../../IEstadosRepositorio'
+import { Estado } from '../../../modelos/Estado'
+import { IRepositorioEstados } from '../../IRepositorioEstados'
 import { ClientePostgres } from '../ClientePostgres'
 import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
 
