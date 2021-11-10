@@ -1,9 +1,9 @@
 import { Estado } from '../../../../modelos/Estado'
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
+class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implements IRepositorio<void> {
   public queryObj: { insertQuery: string, values: string[] }
 
   constructor (estados: Estado[]) {

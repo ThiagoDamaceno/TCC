@@ -1,9 +1,9 @@
 import { ClienteMongo } from '../../ClienteMongo'
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { Estado } from '../../../../modelos/Estado'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class BuscarTodosEstadosMongo extends AbastractRepositorioEstados implements IRepositorioEstados<Estado[] | undefined> {
+class BuscarTodosEstadosMongo extends AbastractRepositorioEstados implements IRepositorio<Estado[] | undefined> {
   public queryObj = ''
 
   // eslint-disable-next-line no-useless-constructor
@@ -24,7 +24,7 @@ class BuscarTodosEstadosMongo extends AbastractRepositorioEstados implements IRe
       const data = await cursor.toArray()
 
       const estados = data.map(data => {
-        return new Estado(data.nome, data.regiao)
+        return new Estado(data.nome, data.regiao, data.id)
       })
 
       return estados

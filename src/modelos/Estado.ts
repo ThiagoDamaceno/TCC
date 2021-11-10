@@ -1,12 +1,15 @@
 import { AbstractModel } from './AbstractModel'
 import { Municipio } from './Municipio'
+
 class Estado extends AbstractModel {
-  public municipios: any[] = []
+  public municipios: Municipio[] = []
   // eslint-disable-next-line no-useless-constructor
   public constructor (
-    public nome: string, public regiao: string
+    public nome: string,
+    public regiao: string,
+    id?: string
   ) {
-    super()
+    super(id)
   }
 
   public adicionarMunicipio (municipios: Municipio[]): void {

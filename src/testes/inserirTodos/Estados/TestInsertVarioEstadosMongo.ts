@@ -1,16 +1,16 @@
-import { getEstadosInArray } from '../../../dadosParaTestes/getEstadosInArray'
 import { InserirVariosEstadosMongo } from '../../../repositorios/mongo/implementacoes/estados/InserirVariosEstadosMongo'
 import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
+import { ObterDados } from '../../../dadosParaTestes/ObterDados'
 
-class TestInsertAllEstadosMongo extends AbstractTeste implements ITeste {
+class TestInsertVarioEstadosMongo extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor
   public constructor () {
     super()
   }
 
   async getInMilliseconds (): Promise<number> {
-    const estados = getEstadosInArray()
+    const estados = ObterDados.obterEstados()
     const insertEstados = new InserirVariosEstadosMongo(estados)
 
     const timeInMilliseconds = await this.getFunctionPerformanceInMilliseconds(async () => {
@@ -21,4 +21,4 @@ class TestInsertAllEstadosMongo extends AbstractTeste implements ITeste {
   }
 }
 
-export { TestInsertAllEstadosMongo }
+export { TestInsertVarioEstadosMongo }

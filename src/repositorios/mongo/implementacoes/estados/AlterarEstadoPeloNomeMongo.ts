@@ -1,8 +1,8 @@
 import { ClienteMongo } from '../../ClienteMongo'
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class AlterarEstadoPeloNomeMongo extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
+class AlterarEstadoPeloNomeMongo extends AbastractRepositorioEstados implements IRepositorio<void> {
   public queryObj: { filter: string, newValue: string }
   constructor (filter: string, newValue: string) {
     super()

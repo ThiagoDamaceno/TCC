@@ -1,9 +1,9 @@
 import { ClienteMongo } from '../../ClienteMongo'
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { Estado } from '../../../../modelos/Estado'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class InserirVariosEstadosMongo extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
+class InserirVariosEstadosMongo extends AbastractRepositorioEstados implements IRepositorio<void> {
   public queryObj: { estados: Estado[] }
 
   constructor (estados: Estado[]) {

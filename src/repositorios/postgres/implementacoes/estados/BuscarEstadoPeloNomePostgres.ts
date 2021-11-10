@@ -1,9 +1,9 @@
 import { Estado } from '../../../../modelos/Estado'
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class BuscarEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorioEstados<Estado[] | undefined> {
+class BuscarEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorio<Estado[] | undefined> {
   public queryObj: { selectAllQuery: string, values: string[]}
 
   constructor (nome: string) {
@@ -22,7 +22,7 @@ class BuscarEstadoPeloNomePostgres extends AbastractRepositorioEstados implement
       const response = await client.query(this.queryObj.selectAllQuery, this.queryObj.values)
 
       const estados = response.rows.map(row => {
-        return new Estado(row.nome, row.regiao)
+        return new Estado(row.nome, row.regiao, row.id)
       })
 
       return estados

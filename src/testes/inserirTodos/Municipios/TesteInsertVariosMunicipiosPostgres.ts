@@ -1,24 +1,24 @@
 import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
-import { InserirVariosEstadosPostgres } from '../../../repositorios/postgres/implementacoes/estados/InserirVariosEstadosPostgres'
+import { InserirVariosMunicipiosMongo } from '../../../repositorios/mongo/implementacoes/municipios/InserirVariosMunicipiosMongo'
 import { ObterDados } from '../../../dadosParaTestes/ObterDados'
 
-class TestInserirVariosEstadosPostgres extends AbstractTeste implements ITeste {
+class TesteInsertVariosMunicipiosPostgres extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor
   public constructor () {
     super()
   }
 
   async getInMilliseconds (): Promise<number> {
-    const estados = ObterDados.obterEstados()
-    const insertEstados = new InserirVariosEstadosPostgres(estados)
+    const municipios = ObterDados.obterMunicipios()
+    const insertMunicipios = new InserirVariosMunicipiosMongo(municipios)
 
     const timeInMilliseconds = await this.getFunctionPerformanceInMilliseconds(async () => {
-      await insertEstados.execute()
+      await insertMunicipios.execute()
     })
 
     return timeInMilliseconds
   }
 }
 
-export { TestInserirVariosEstadosPostgres }
+export { TesteInsertVariosMunicipiosPostgres }

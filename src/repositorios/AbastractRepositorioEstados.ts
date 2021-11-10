@@ -1,5 +1,5 @@
 abstract class AbastractRepositorioEstados {
-  public SCHEMA_NAME: string = 'estados'
+  public readonly SCHEMA_NAME: string
 
   constructor () {
     this.SCHEMA_NAME = 'estados'

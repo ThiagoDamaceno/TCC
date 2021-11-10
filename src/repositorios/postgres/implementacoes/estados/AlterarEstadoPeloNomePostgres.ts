@@ -1,8 +1,8 @@
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class AlterarEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
+class AlterarEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorio<void> {
   public queryObj: { updateQuery: string, values: string[] }
 
   constructor (public filter: string, public newValue: string) {

@@ -1,8 +1,8 @@
-import { IRepositorioEstados } from '../../../IRepositorioEstados'
+import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
 import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
 
-class TruncateEstadosPostgres extends AbastractRepositorioEstados implements IRepositorioEstados<void> {
+class TruncateEstadosPostgres extends AbastractRepositorioEstados implements IRepositorio<void> {
   public queryObj: { truncateQuery: string }
 
   constructor () {

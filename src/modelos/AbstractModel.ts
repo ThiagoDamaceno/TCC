@@ -1,9 +1,9 @@
-import { v4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 abstract class AbstractModel {
   constructor (public id?: string) {
     if (!id) {
-      this.id = v4()
+      this.id = uuidv4()
     }
   }
 }
