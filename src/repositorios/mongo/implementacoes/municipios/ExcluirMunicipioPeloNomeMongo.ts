@@ -1,8 +1,8 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
-import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
+import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
 
-class ExcluirEstadoPeloNomeMongo extends AbastractRepositorioEstados implements IRepositorio<void> {
+class ExcluirMunicipioPeloNomeMongo extends AbastractRepositorioMunicipios implements IRepositorio<void> {
   public queryObj: { filter: string }
   constructor (filter: string) {
     super()
@@ -28,4 +28,4 @@ class ExcluirEstadoPeloNomeMongo extends AbastractRepositorioEstados implements 
   }
 }
 
-export { ExcluirEstadoPeloNomeMongo }
+export { ExcluirMunicipioPeloNomeMongo }
