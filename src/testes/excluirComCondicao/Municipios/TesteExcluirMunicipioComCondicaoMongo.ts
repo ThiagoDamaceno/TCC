@@ -1,6 +1,8 @@
 import { AbstractTeste } from '../../AbstractTeste'
 import { ITeste } from '../../ITeste'
-import { ExcluirMunicipioPeloNomeMongo } from '../../../repositorios/mongo/implementacoes/municipios/ExcluirMunicipioPeloNomeMongo'
+import { ExcluirMunicipiosPeloNomeMongo } from '../../../repositorios/mongo/implementacoes/municipios/ExcluirMunicipiosPeloNomeMongo'
+import { ObterDados } from '../../../dadosParaTestes/ObterDados'
+import { InserirVariosMunicipiosMongo } from '../../../repositorios/mongo/implementacoes/municipios/InserirVariosMunicipiosMongo'
 
 class TesteExcluirMunicipioComCondicaoMongo extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor
@@ -9,7 +11,10 @@ class TesteExcluirMunicipioComCondicaoMongo extends AbstractTeste implements ITe
   }
 
   async getInMilliseconds (): Promise<number> {
-    const excluirMunicipioPeloNome = new ExcluirMunicipioPeloNomeMongo('Maringá')
+    const municipios = ObterDados.obterMunicipios()
+    await (new InserirVariosMunicipiosMongo(municipios)).execute()
+
+    const excluirMunicipioPeloNome = new ExcluirMunicipiosPeloNomeMongo('Maringá')
 
     const timeInMilliseconds = await this.getFunctionPerformanceInMilliseconds(async () => {
       await excluirMunicipioPeloNome.execute()

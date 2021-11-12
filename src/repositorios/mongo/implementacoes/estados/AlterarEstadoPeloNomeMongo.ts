@@ -1,11 +1,10 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
-import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
+import { RepositorioEstados } from '../../../RepositorioEstados'
 
-class AlterarEstadoPeloNomeMongo extends AbastractRepositorioEstados implements IRepositorio<void> {
+class AlterarEstadoPeloNomeMongo implements IRepositorio<void> {
   public queryObj: { filter: string, newValue: string }
   constructor (filter: string, newValue: string) {
-    super()
     this.queryObj = { filter, newValue }
   }
 
@@ -16,7 +15,7 @@ class AlterarEstadoPeloNomeMongo extends AbastractRepositorioEstados implements 
 
       await clienteMongo
         .db(process.env.MONGO_INIT_DB)
-        .collection(this.SCHEMA_NAME)
+        .collection(RepositorioEstados.SCHEMA_NAME)
         .updateMany(
           {
             nome: this.queryObj.filter
@@ -27,8 +26,9 @@ class AlterarEstadoPeloNomeMongo extends AbastractRepositorioEstados implements 
             }
           } as Object
         )
-    } finally {
       await clienteMongo.close()
+    } catch (err) {
+      console.error(err)
     }
   }
 }

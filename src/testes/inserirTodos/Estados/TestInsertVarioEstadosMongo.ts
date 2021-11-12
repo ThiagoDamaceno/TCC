@@ -3,7 +3,7 @@ import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
 import { ObterDados } from '../../../dadosParaTestes/ObterDados'
 
-class TestInsertVarioEstadosMongo extends AbstractTeste implements ITeste {
+class TesteInsertVarioEstadosMongo extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor
   public constructor () {
     super()
@@ -21,4 +21,4 @@ class TestInsertVarioEstadosMongo extends AbstractTeste implements ITeste {
   }
 }
 
-export { TestInsertVarioEstadosMongo }
+export { TesteInsertVarioEstadosMongo }

@@ -1,16 +1,14 @@
 import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 import { Municipio } from '../../../../modelos/Municipio'
 
-class BuscarTodosMunicipiosPostgres extends AbastractRepositorioMunicipios implements IRepositorio<Municipio[] | undefined> {
+class BuscarTodosMunicipiosPostgres implements IRepositorio<Municipio[] | undefined> {
   public queryObj: { selectAllQuery: string }
 
   constructor () {
-    super()
-
     const selectAllQuery = `
-      SELECT * FROM ${this.SCHEMA_NAME};
+      SELECT * FROM ${RepositorioMunicipios.SCHEMA_NAME};
     `
     this.queryObj = { selectAllQuery }
   }
@@ -22,14 +20,13 @@ class BuscarTodosMunicipiosPostgres extends AbastractRepositorioMunicipios imple
       const response = await client.query(this.queryObj.selectAllQuery)
 
       const municipios = response.rows.map(row => {
-        return new Municipio(row.codigoIbge, row.nome, row.latitude, row.longitude, row.codigoUf, row.ddd, row.id)
+        return new Municipio(row.codigoIbge, row.nome, row.codigoUf, row.id)
       })
 
+      await client.end()
       return municipios
     } catch (error) {
       console.error(error)
-    } finally {
-      await client.end()
     }
   }
 }

@@ -1,14 +1,12 @@
 import { Estado } from '../../../../modelos/Estado'
 import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
-import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
+import { RepositorioEstados } from '../../../RepositorioEstados'
 
-class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implements IRepositorio<void> {
+class InserirVariosEstadosPostgres implements IRepositorio<void> {
   public queryObj: { insertQuery: string, values: string[] }
 
   constructor (estados: Estado[]) {
-    super()
-
     let valuesInsert = ''
     estados.forEach((_estado, i) => {
       let string = `($${(i * 3) + 1}, $${(i * 3) + 2}, $${(i * 3) + 3})`
@@ -19,14 +17,14 @@ class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implement
     })
 
     const insertQuery = `
-        INSERT INTO ${this.SCHEMA_NAME} (id, nome, regiao) values ${valuesInsert}
+        INSERT INTO ${RepositorioEstados.SCHEMA_NAME} (id, nome, codigoUf) values ${valuesInsert}
       `
 
     const values: string[] = []
     estados.forEach(estado => {
       values.push(estado.id!)
       values.push(estado.nome)
-      values.push(estado.regiao)
+      values.push(estado.codigoUf.toString())
     })
 
     this.queryObj = { insertQuery, values }
@@ -37,10 +35,9 @@ class InserirVariosEstadosPostgres extends AbastractRepositorioEstados implement
     client.connect()
     try {
       await client.query(this.queryObj.insertQuery, this.queryObj.values)
+      await client.end()
     } catch (error) {
       console.error(error)
-    } finally {
-      await client.end()
     }
   }
 }

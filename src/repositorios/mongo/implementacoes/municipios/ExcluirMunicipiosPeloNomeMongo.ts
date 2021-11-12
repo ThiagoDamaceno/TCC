@@ -1,11 +1,10 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 
-class ExcluirMunicipioPeloNomeMongo extends AbastractRepositorioMunicipios implements IRepositorio<void> {
+class ExcluirMunicipiosPeloNomeMongo implements IRepositorio<void> {
   public queryObj: { filter: string }
   constructor (filter: string) {
-    super()
     this.queryObj = { filter }
   }
 
@@ -16,16 +15,17 @@ class ExcluirMunicipioPeloNomeMongo extends AbastractRepositorioMunicipios imple
 
       await clienteMongo
         .db(process.env.MONGO_INIT_DB)
-        .collection(this.SCHEMA_NAME)
+        .collection(RepositorioMunicipios.SCHEMA_NAME)
         .deleteMany(
           {
             nome: this.queryObj.filter
           } as Object
         )
-    } finally {
       await clienteMongo.close()
+    } catch (err) {
+      console.error(err)
     }
   }
 }
 
-export { ExcluirMunicipioPeloNomeMongo }
+export { ExcluirMunicipiosPeloNomeMongo }

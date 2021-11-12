@@ -6,7 +6,7 @@ class Estado extends AbstractModel {
   // eslint-disable-next-line no-useless-constructor
   public constructor (
     public nome: string,
-    public regiao: string,
+    public codigoUf: number,
     id?: string
   ) {
     super(id)

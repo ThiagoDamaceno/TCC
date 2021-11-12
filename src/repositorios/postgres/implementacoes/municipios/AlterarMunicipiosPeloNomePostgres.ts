@@ -1,15 +1,13 @@
 import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 
-class AlterarMunicipioPeloNomePostgres extends AbastractRepositorioMunicipios implements IRepositorio<void> {
+class AlterarMunicipiosPeloNomePostgres implements IRepositorio<void> {
   public queryObj: { updateQuery: string, values: string[] }
 
   constructor (filter: string, public newValue: string) {
-    super()
-
     const updateQuery = `
-    UPDATE ${this.SCHEMA_NAME} SET nome = $1 WHERE nome = $2;
+    UPDATE ${RepositorioMunicipios.SCHEMA_NAME} SET nome = $1 WHERE nome = $2;
   `
     const values = [this.newValue, filter]
     this.queryObj = { updateQuery, values }
@@ -20,12 +18,11 @@ class AlterarMunicipioPeloNomePostgres extends AbastractRepositorioMunicipios im
     try {
       await client.connect()
       await client.query(this.queryObj.updateQuery, this.queryObj.values)
+      await client.end()
     } catch (error) {
       console.error(error)
-    } finally {
-      await client.end()
     }
   }
 }
 
-export { AlterarMunicipioPeloNomePostgres }
+export { AlterarMunicipiosPeloNomePostgres }

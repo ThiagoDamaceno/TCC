@@ -11,10 +11,7 @@ class ObterDados {
       municipio => municipios.push(new Municipio(
         municipio.codigo_ibge,
         municipio.nome,
-        municipio.latitude,
-        municipio.longitude,
-        municipio.codigo_uf,
-        municipio.ddd
+        municipio.codigo_uf
       ))
     )
 
@@ -25,7 +22,7 @@ class ObterDados {
     const estados: Estado[] = []
 
     estadosFromJson.forEach(
-      estado => estados.push(new Estado(estado.nome, estado.regiao))
+      estado => estados.push(new Estado(estado.nome, estado.codigo_uf))
     )
 
     return estados

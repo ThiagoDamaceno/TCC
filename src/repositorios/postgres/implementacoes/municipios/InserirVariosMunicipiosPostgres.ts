@@ -1,23 +1,19 @@
 import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 import { Municipio } from '../../../../modelos/Municipio'
 
-class InserirVariosMunicipiosPostgres extends AbastractRepositorioMunicipios implements IRepositorio<void> {
+class InserirVariosMunicipiosPostgres implements IRepositorio<void> {
   public queryObj: { insertQuery: string, values: string[] }
 
   constructor (municipios: Municipio[]) {
-    super()
-
     let valuesInsert = ''
     municipios.forEach((_municipio, i) => {
       let string = `(
-        $${(i * 6) + 1}, 
-        $${(i * 6) + 2}, 
-        $${(i * 6) + 3},
-        $${(i * 6) + 4}, 
-        $${(i * 6) + 5}, 
-        $${(i * 6) + 6}
+        $${(i * 4) + 1}, 
+        $${(i * 4) + 2}, 
+        $${(i * 4) + 3},
+        $${(i * 4) + 4}
       )`
 
       if (i !== municipios.length - 1) { string += ', ' }
@@ -26,7 +22,7 @@ class InserirVariosMunicipiosPostgres extends AbastractRepositorioMunicipios imp
     })
 
     const insertQuery = `
-        INSERT INTO ${this.SCHEMA_NAME} (id, codigoIbge, nome, latitude, longitude, codigoUf, ddd) values ${valuesInsert}
+        INSERT INTO ${RepositorioMunicipios.SCHEMA_NAME} (id, codigoIbge, nome, codigoUf) values ${valuesInsert}
       `
 
     const values: string[] = []
@@ -34,10 +30,7 @@ class InserirVariosMunicipiosPostgres extends AbastractRepositorioMunicipios imp
       values.push(municipio.id!)
       values.push(municipio.codigoIbge.toString())
       values.push(municipio.nome)
-      values.push(municipio.latitude.toString())
-      values.push(municipio.longitude.toString())
       values.push(municipio.codigoUf.toString())
-      values.push(municipio.ddd.toString())
     })
 
     this.queryObj = { insertQuery, values }
@@ -48,10 +41,9 @@ class InserirVariosMunicipiosPostgres extends AbastractRepositorioMunicipios imp
     client.connect()
     try {
       await client.query(this.queryObj.insertQuery, this.queryObj.values)
+      await client.end()
     } catch (error) {
       console.error(error)
-    } finally {
-      await client.end()
     }
   }
 }

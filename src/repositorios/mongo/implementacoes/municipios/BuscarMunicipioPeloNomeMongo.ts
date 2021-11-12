@@ -1,14 +1,12 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 import { Municipio } from '../../../../modelos/Municipio'
 
-class BuscarMunicipiosPeloNomeMongo extends AbastractRepositorioMunicipios implements IRepositorio<Municipio[] | undefined> {
+class BuscarMunicipiosPeloNomeMongo implements IRepositorio<Municipio[] | undefined> {
   public queryObj: { nome: string }
 
   constructor (nome: string) {
-    super()
-
     this.queryObj = { nome }
   }
 
@@ -19,18 +17,19 @@ class BuscarMunicipiosPeloNomeMongo extends AbastractRepositorioMunicipios imple
 
       const cursor = clienteMongo
         .db(process.env.MONGO_INIT_DB)
-        .collection(this.SCHEMA_NAME)
+        .collection(RepositorioMunicipios.SCHEMA_NAME)
         .find({ nome: this.queryObj.nome })
 
       const data = await cursor.toArray()
 
       const municipios = data.map(data => {
-        return new Municipio(data.codigoIbge, data.nome, data.latitude, data.longitude, data.codigoUf, data.ddd, data.id)
+        return new Municipio(data.codigoIbge, data.nome, data.codigoUf, data.id)
       })
 
-      return municipios
-    } finally {
       await clienteMongo.close()
+      return municipios
+    } catch (err) {
+      console.error(err)
     }
   }
 }

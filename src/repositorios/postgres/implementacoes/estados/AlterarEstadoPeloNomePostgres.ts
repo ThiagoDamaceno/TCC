@@ -1,15 +1,13 @@
 import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
-import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
+import { RepositorioEstados } from '../../../RepositorioEstados'
 
-class AlterarEstadoPeloNomePostgres extends AbastractRepositorioEstados implements IRepositorio<void> {
+class AlterarEstadoPeloNomePostgres implements IRepositorio<void> {
   public queryObj: { updateQuery: string, values: string[] }
 
   constructor (public filter: string, public newValue: string) {
-    super()
-
     const updateQuery = `
-    UPDATE ${this.SCHEMA_NAME} SET nome = $2 WHERE nome = $1;
+    UPDATE ${RepositorioEstados.SCHEMA_NAME} SET nome = $2 WHERE nome = $1;
   `
     const values = [this.filter, this.newValue]
     this.queryObj = { updateQuery, values }
@@ -20,10 +18,9 @@ class AlterarEstadoPeloNomePostgres extends AbastractRepositorioEstados implemen
     try {
       await client.connect()
       await client.query(this.queryObj.updateQuery, this.queryObj.values)
+      await client.end()
     } catch (error) {
       console.error(error)
-    } finally {
-      await client.end()
     }
   }
 }

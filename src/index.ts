@@ -1,79 +1,56 @@
-import { CriarEstados } from './repositorios/postgres/tabelas/CriarEstados'
-
-import * as dotenv from 'dotenv'
-import { TestInsertVarioEstadosMongo } from './testes/inserirTodos/Estados/TestInsertVarioEstadosMongo'
-import { TestInserirVariosEstadosPostgres } from './testes/inserirTodos/Estados/TestInserirVariosEstadosPostgres'
-import { TestBuscarTodosEstadosMongo } from './testes/buscarTodos/Estados/TestBuscarTodosEstadosMongo'
-import { TestBuscarTodosEstadosPostgres } from './testes/buscarTodos/Estados/TestBuscarTodosEstadosPostgres'
-import { TestBuscarPeloNomeMongo } from './testes/buscarComCondicao/TestBuscarPeloNomeMongo'
-import { TestBuscarEstadoPeloNomePostgres } from './testes/buscarComCondicao/TestBuscarEstadoPeloNomePostgres'
-import { TestAlterarEstadoPeloNomeMongo } from './testes/alterarComCondicao/Estados/TestAlterarEstadoPeloNomeMongo'
-import { TestAlterarEstadoPeloNomePostgres } from './testes/alterarComCondicao/Estados/TestAlterarEstadoPeloNomePostgres'
-import { TesteInsertVariosMunicipiosMongo } from './testes/inserirTodos/Municipios/TesteInsertVariosMunicipiosMongo'
-import { TesteInsertVariosMunicipiosPostgres } from './testes/inserirTodos/Municipios/TesteInsertVariosMunicipiosPostgres'
-dotenv.config()
-
-class Index {
-  async createDatabases (): Promise<void> {
-    await (new CriarEstados()).createIfNotExists()
-  }
-
-  async executeTestsInsertAll (): Promise<void> {
-    const timeMillisecondsInsertAllMongo = await (new TestInsertVarioEstadosMongo()).getInMilliseconds()
-    console.log(`Tempo gasto insert all mongo: ${timeMillisecondsInsertAllMongo}ms`)
-
-    const timeMillisecondsInsertAllPostgres = await (new TestInserirVariosEstadosPostgres()).getInMilliseconds()
-    console.log(`Tempo gasto insert all postgres: ${timeMillisecondsInsertAllPostgres}ms`)
-  }
-
-  async executeTestsFindAll (): Promise<void> {
-    const timeMillisecondsInsertAllMongo = await (new TestBuscarTodosEstadosMongo()).getInMilliseconds()
-    console.log(`Tempo gasto find all mongo: ${timeMillisecondsInsertAllMongo}ms`)
-
-    const timeMillisecondsInsertAllPostgres = await (new TestBuscarTodosEstadosPostgres()).getInMilliseconds()
-    console.log(`Tempo gasto find all postgres: ${timeMillisecondsInsertAllPostgres}ms`)
-  }
-
-  async executeTestsFindByName (): Promise<void> {
-    const tempoEmMilisegundosMongo = await (new TestBuscarPeloNomeMongo()).getInMilliseconds()
-    console.log(`Tempo gasto find by nome mongo: ${tempoEmMilisegundosMongo}ms`)
-
-    const tempoEmMilisegundosPostgres = await (new TestBuscarEstadoPeloNomePostgres()).getInMilliseconds()
-    console.log(`Tempo gasto find by nome postgres: ${tempoEmMilisegundosPostgres}ms`)
-  }
-
-  async executeTestsUpdateByName (): Promise<void> {
-    const tempoEmMilisegundosMongo = await (new TestAlterarEstadoPeloNomeMongo()).getInMilliseconds()
-    console.log(`Tempo gasto update by nome mongo: ${tempoEmMilisegundosMongo}ms`)
-
-    const tempoEmMilisegundosPostgres = await (new TestAlterarEstadoPeloNomePostgres()).getInMilliseconds()
-    console.log(`Tempo gasto update by nome postgres: ${tempoEmMilisegundosPostgres}ms`)
-  }
-
-  async executeTestesInserirTodosMunicipios (): Promise<void> {
-    const tempoEmMilisegundosMongo = await (new TesteInsertVariosMunicipiosMongo()).getInMilliseconds()
-    console.log(`Tempo gasto inserir todos mongo: ${tempoEmMilisegundosMongo}ms`)
-
-    const tempoEmMilisegundosPostgres = await (new TesteInsertVariosMunicipiosPostgres()).getInMilliseconds()
-    console.log(`Tempo gasto inserir todos postgres: ${tempoEmMilisegundosPostgres}ms`)
-  }
-}
+import { GerarResultadosExcluirMunicipiosComCondicao } from './testes/GerarResultados/GerarResultadosExcluirMunicipiosComCondicao'
+import { GerarResultadosBuscarTodosMunicipios } from './testes/GerarResultados/GerarResultadosBuscarTodosMunicipios'
+import { GerarResultadosInserirTodosMunicipios } from './testes/GerarResultados/GerarResultadosInserirTodosMunicipios'
+import { PrepararAmbiente } from './testes/PrepararAmbiente'
+import { GerarResultadosBuscarMunicipiosComCondicao } from './testes/GerarResultados/GerarResultadosBuscarMunicipiosComCondicao'
+import { GerarResultadosAlterarMunicipiosComCondicao } from './testes/GerarResultados/GerarResultadosAlterarMunicipiosComCondicao'
+import { GerarResultadoBuscarEstadoPeloMunicipio } from './testes/GerarResultados/GerarResultadoBuscarEstadoPeloMunicipio'
+import { BuscarEstadoPeloNomeDoMunicipioMongo } from './repositorios/mongo/implementacoes/estados/BuscarEstadoPeloNomeDoMunicipioMongo'
+import { BuscarEstadoPeloNomeDoMunicipioPostgres } from './repositorios/postgres/implementacoes/estados/BuscarEstadoPeloNomeDoMunicipioPostgres'
+import { TesteBuscarComRelacionamentosMongo } from './testes/buscarComRelacionamentos/Estados/TesteBuscarComRelacionamentosMongo'
+import { TesteBuscarComRelacionamentosPostgres } from './testes/buscarComRelacionamentos/Estados/TesteBuscarComRelacionamentosPostgres'
 
 async function init () {
   console.clear()
 
-  console.log('Testes iniciados')
+  console.log('Iniciando testes: ')
+  console.log()
+
+  console.log('Criando estruturas...')
+
+  await PrepararAmbiente.criarEsquemasSeNaoExistirem()
+  await PrepararAmbiente.truncateTodosOsDados()
+  await PrepararAmbiente.inserirTodosOsDados()
+
+  console.log('Estruturas criadas')
   console.log('')
-}
 
-// eslint-disable-next-line no-unused-vars
-async function initTestesInserirTodosMunicipios () {
-  const index = new Index()
+  console.log('Gerando resultados (Inserir todos os municipios)...')
+  await (new GerarResultadosInserirTodosMunicipios()).gerarResultados()
+  console.log('')
 
-  await index.createDatabases()
+  console.log('Gerando resultados (Buscar todos os municipios)...')
+  await (new GerarResultadosBuscarTodosMunicipios()).gerarResultados()
+  console.log('')
 
-  await index.executeTestesInserirTodosMunicipios()
+  console.log('Gerando resultados (Buscar municipios com condicao)...')
+  await (new GerarResultadosBuscarMunicipiosComCondicao()).gerarResultados()
+  console.log('')
+
+  console.log('Gerando resultados (Alterar municipios com condicao)...')
+  await (new GerarResultadosAlterarMunicipiosComCondicao()).gerarResultados()
+  console.log('')
+
+  console.log('Gerando resultados (Excluir municipios com condicao)...')
+  await (new GerarResultadosExcluirMunicipiosComCondicao()).gerarResultados()
+  console.log('')
+
+  console.log('Gerando resultados (Buscar estado pelo municipio)...')
+  await (new GerarResultadoBuscarEstadoPeloMunicipio()).gerarResultados()
+  console.log('')
+
+  console.log('--------------')
+  console.log('Testes realiazados com sucesso')
 }
 
 init()
-initTestesInserirTodosMunicipios()

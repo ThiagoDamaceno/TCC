@@ -1,15 +1,13 @@
 import { IRepositorio } from '../../../IRepositorio'
 import { ClientePostgres } from '../../ClientePostgres'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 
-class TruncateMunicipiosPostgres extends AbastractRepositorioMunicipios implements IRepositorio<void> {
+class TruncateMunicipiosPostgres implements IRepositorio<void> {
   public queryObj: { truncateQuery: string }
 
   constructor () {
-    super()
-
     const truncateQuery = `
-    TRUNCATE TABLE ${this.SCHEMA_NAME};
+    TRUNCATE TABLE ${RepositorioMunicipios.SCHEMA_NAME};
   `
     this.queryObj = { truncateQuery }
   }
@@ -19,10 +17,9 @@ class TruncateMunicipiosPostgres extends AbastractRepositorioMunicipios implemen
     try {
       await client.connect()
       await client.query(this.queryObj.truncateQuery)
+      await client.end()
     } catch (error) {
       console.error(error)
-    } finally {
-      await client.end()
     }
   }
 }

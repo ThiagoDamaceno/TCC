@@ -1,9 +1,10 @@
-import { ITeste } from '../../ITeste'
 import { AbstractTeste } from '../../AbstractTeste'
+import { ITeste } from '../../ITeste'
+import { AlterarEstadoPeloNomePostgres } from '../../../repositorios/postgres/implementacoes/estados/AlterarEstadoPeloNomePostgres'
 import { InserirVariosEstadosPostgres } from '../../../repositorios/postgres/implementacoes/estados/InserirVariosEstadosPostgres'
 import { ObterDados } from '../../../dadosParaTestes/ObterDados'
 
-class TestInserirVariosEstadosPostgres extends AbstractTeste implements ITeste {
+class TesteAlterarEstadoPeloNomePostgres extends AbstractTeste implements ITeste {
   // eslint-disable-next-line no-useless-constructor
   public constructor () {
     super()
@@ -11,14 +12,15 @@ class TestInserirVariosEstadosPostgres extends AbstractTeste implements ITeste {
 
   async getInMilliseconds (): Promise<number> {
     const estados = ObterDados.obterEstados()
-    const insertEstados = new InserirVariosEstadosPostgres(estados)
+    await (new InserirVariosEstadosPostgres(estados)).execute()
+    const updateEstadoByNamo = new AlterarEstadoPeloNomePostgres('Distrito Federal', 'Brasília')
 
     const timeInMilliseconds = await this.getFunctionPerformanceInMilliseconds(async () => {
-      await insertEstados.execute()
+      await updateEstadoByNamo.execute()
     })
 
     return timeInMilliseconds
   }
 }
 
-export { TestInserirVariosEstadosPostgres }
+export { TesteAlterarEstadoPeloNomePostgres }

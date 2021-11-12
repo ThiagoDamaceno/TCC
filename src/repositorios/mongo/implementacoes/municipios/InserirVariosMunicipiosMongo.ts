@@ -1,13 +1,12 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
 import { Municipio } from '../../../../modelos/Municipio'
-import { AbastractRepositorioMunicipios } from '../../../AbastractRepositorioMunicipios'
+import { RepositorioMunicipios } from '../../../RepositorioMunicipios'
 
-class InserirVariosMunicipiosMongo extends AbastractRepositorioMunicipios implements IRepositorio<void> {
+class InserirVariosMunicipiosMongo implements IRepositorio<void> {
   public queryObj: { municipios: Municipio[] }
 
   constructor (municipios: Municipio[]) {
-    super()
     this.queryObj = { municipios }
   }
 
@@ -18,10 +17,11 @@ class InserirVariosMunicipiosMongo extends AbastractRepositorioMunicipios implem
 
       await clienteMongo
         .db(process.env.MONGO_INIT_DB)
-        .collection(this.SCHEMA_NAME)
+        .collection(RepositorioMunicipios.SCHEMA_NAME)
         .insertMany(this.queryObj.municipios)
-    } finally {
       await clienteMongo.close()
+    } catch (err) {
+      console.error(err)
     }
   }
 }

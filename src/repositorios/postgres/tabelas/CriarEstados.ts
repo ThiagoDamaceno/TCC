@@ -1,22 +1,17 @@
-import { AbastractRepositorioEstados } from '../../AbastractRepositorioEstados'
+import { RepositorioEstados } from '../../RepositorioEstados'
 import { ClientePostgres } from '../ClientePostgres'
 
-class CriarEstados extends AbastractRepositorioEstados {
-  // eslint-disable-next-line no-useless-constructor
-  constructor () {
-    super()
-  }
-
+class CriarEstados {
   async createIfNotExists () {
     const client = new ClientePostgres().client
     try {
       await client.connect()
 
       const createTableCommand = `
-        CREATE TABLE IF NOT EXISTS ${this.SCHEMA_NAME} (
+        CREATE TABLE IF NOT EXISTS ${RepositorioEstados.SCHEMA_NAME} (
           id VARCHAR(255) PRIMARY KEY,
           nome VARCHAR(255) NOT NULL,
-          regiao VARCHAR(255) NOT NULL
+          codigoUf INT NOT NULL
         );
       `
       await client.query(createTableCommand)

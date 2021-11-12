@@ -1,11 +1,10 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
-import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
+import { RepositorioEstados } from '../../../RepositorioEstados'
 
-class TruncateEstadosMongo extends AbastractRepositorioEstados implements IRepositorio<void> {
+class TruncateEstadosMongo implements IRepositorio<void> {
   public queryObj: { }
   constructor () {
-    super()
     this.queryObj = { }
   }
 
@@ -14,12 +13,25 @@ class TruncateEstadosMongo extends AbastractRepositorioEstados implements IRepos
     try {
       await clienteMongo.connect()
 
-      await clienteMongo
+      const collections = await clienteMongo
         .db(process.env.MONGO_INIT_DB)
-        .collection(this.SCHEMA_NAME)
-        .drop()
-    } finally {
+        .listCollections()
+        .toArray()
+
+      collections.forEach(async c => {
+        if (c.name === RepositorioEstados.SCHEMA_NAME) {
+          const clienteMongo2 = (new ClienteMongo()).client
+          clienteMongo2.connect()
+          await clienteMongo2
+            .db(process.env.MONGO_INIT_DB)
+            .collection(RepositorioEstados.SCHEMA_NAME)
+            .drop()
+          await clienteMongo2.close()
+        }
+      })
       await clienteMongo.close()
+    } catch (err) {
+      console.error(err)
     }
   }
 }

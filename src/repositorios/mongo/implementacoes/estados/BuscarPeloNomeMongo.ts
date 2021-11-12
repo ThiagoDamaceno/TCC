@@ -1,14 +1,12 @@
 import { ClienteMongo } from '../../ClienteMongo'
 import { IRepositorio } from '../../../IRepositorio'
 import { Estado } from '../../../../modelos/Estado'
-import { AbastractRepositorioEstados } from '../../../AbastractRepositorioEstados'
+import { RepositorioEstados } from '../../../RepositorioEstados'
 
-class BuscarPeloNomeMongo extends AbastractRepositorioEstados implements IRepositorio<Estado[] | undefined> {
+class BuscarPeloNomeMongo implements IRepositorio<Estado[] | undefined> {
   public queryObj: { nome: string }
 
   constructor (nome: string) {
-    super()
-
     this.queryObj = { nome }
   }
 
@@ -19,18 +17,19 @@ class BuscarPeloNomeMongo extends AbastractRepositorioEstados implements IReposi
 
       const cursor = clienteMongo
         .db(process.env.MONGO_INIT_DB)
-        .collection(this.SCHEMA_NAME)
+        .collection(RepositorioEstados.SCHEMA_NAME)
         .find({ nome: this.queryObj.nome })
 
       const data = await cursor.toArray()
 
       const estados = data.map(data => {
-        return new Estado(data.nome, data.regiao, data.id)
+        return new Estado(data.nome, data.codigoUf, data.id)
       })
 
-      return estados
-    } finally {
       await clienteMongo.close()
+      return estados
+    } catch (err) {
+      console.error(err)
     }
   }
 }
