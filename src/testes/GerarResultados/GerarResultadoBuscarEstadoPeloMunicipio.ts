@@ -13,7 +13,7 @@ class GerarResultadoBuscarEstadoPeloMunicipio extends GerarResultados implements
       async () => await new TesteBuscarComRelacionamentosPostgres().getInMilliseconds()
     )
 
-    fs.writeFile(`src/resultados/${obterStringComHoraAtual()}_Resultados-Buscar-Estado-Pelo-Municipio.json`, JSON.stringify(resultados.resultados), function (err: any) {
+    fs.writeFile(`resultados/${obterStringComHoraAtual()}_Resultados-Buscar-Estado-Pelo-Municipio.json`, JSON.stringify(resultados.resultados), function (err: any) {
       if (err) {
         console.log(err)
       }

@@ -13,7 +13,7 @@ class GerarResultadosBuscarTodosMunicipios extends GerarResultados implements IG
       async () => await (new TesteBuscarTodosMunicipiosPostgres()).getInMilliseconds()
     )
 
-    fs.writeFile(`src/resultados/${obterStringComHoraAtual()}_Resultados-Buscar-Todos.json`, JSON.stringify(resultados.resultados), function (err: any) {
+    fs.writeFile(`resultados/${obterStringComHoraAtual()}_Resultados-Buscar-Todos.json`, JSON.stringify(resultados.resultados), function (err: any) {
       if (err) {
         console.log(err)
       }

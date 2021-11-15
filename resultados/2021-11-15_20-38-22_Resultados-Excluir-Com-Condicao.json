@@ -1,0 +1,38 @@
+{
+  "numeroDeRepeticoesDoTeste": 10,
+  "tipoDoTeste": "Excluir Municipios com Condicao",
+  "resultados": [
+    {
+      "sgbd": "mongo",
+      "resultadosEmMilissegundos": [
+        6,
+        7,
+        6,
+        5,
+        5,
+        8,
+        5,
+        5,
+        5,
+        7
+      ],
+      "media": 5.9
+    },
+    {
+      "sgbd": "postgres",
+      "resultadosEmMilissegundos": [
+        20,
+        20,
+        21,
+        20,
+        20,
+        24,
+        20,
+        19,
+        19,
+        23
+      ],
+      "media": 20.6
+    }
+  ]
+}

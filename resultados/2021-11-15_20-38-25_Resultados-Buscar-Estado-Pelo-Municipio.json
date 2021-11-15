@@ -1,0 +1,38 @@
+{
+  "numeroDeRepeticoesDoTeste": 10,
+  "tipoDoTeste": "Buscar Estado pelo municipio",
+  "resultados": [
+    {
+      "sgbd": "mongo",
+      "resultadosEmMilissegundos": [
+        57,
+        57,
+        56,
+        56,
+        58,
+        58,
+        58,
+        56,
+        56,
+        57
+      ],
+      "media": 56.9
+    },
+    {
+      "sgbd": "postgres",
+      "resultadosEmMilissegundos": [
+        20,
+        24,
+        20,
+        20,
+        20,
+        20,
+        24,
+        20,
+        23,
+        20
+      ],
+      "media": 21.1
+    }
+  ]
+}

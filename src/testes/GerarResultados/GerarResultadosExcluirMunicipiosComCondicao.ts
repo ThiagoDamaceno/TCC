@@ -13,7 +13,7 @@ class GerarResultadosExcluirMunicipiosComCondicao extends GerarResultados implem
       async () => await (new TesteExcluirMunicipioComCondicaoPostgres()).getInMilliseconds()
     )
 
-    fs.writeFile(`src/resultados/${obterStringComHoraAtual()}_Resultados-Excluir-Com-Condicao.json`, JSON.stringify(resultados.resultados), function (err: any) {
+    fs.writeFile(`resultados/${obterStringComHoraAtual()}_Resultados-Excluir-Com-Condicao.json`, JSON.stringify(resultados.resultados), function (err: any) {
       if (err) {
         console.log(err)
       }
