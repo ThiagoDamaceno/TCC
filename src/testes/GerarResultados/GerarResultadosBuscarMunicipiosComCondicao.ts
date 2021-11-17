@@ -13,7 +13,7 @@ class GerarResultadosBuscarMunicipiosComCondicao extends GerarResultados impleme
       async () => await (new TesteBuscarMunicipiosPeloNomePostgres()).getInMilliseconds()
     )
 
-    fs.writeFile(`src/resultados/${obterStringComHoraAtual()}_Resultados-Buscar-Com-Condicao.json`, JSON.stringify(resultados.resultados), function (err: any) {
+    fs.writeFile(`resultados/${obterStringComHoraAtual()}_Resultados-Buscar-Com-Condicao.json`, JSON.stringify(resultados.resultados), function (err: any) {
       if (err) {
         console.log(err)
       }

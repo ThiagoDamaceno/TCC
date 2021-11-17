@@ -13,7 +13,7 @@ class GerarResultadosAlterarMunicipiosComCondicao extends GerarResultados implem
       async () => await (new TesteAlterarMunicipiosPeloNomePostgres()).getInMilliseconds()
     )
 
-    fs.writeFile(`src/resultados/${obterStringComHoraAtual()}_Resultados-Alterar-Com-Condicao.json`, JSON.stringify(resultados.resultados), function (err: any) {
+    fs.writeFile(`resultados/${obterStringComHoraAtual()}_Resultados-Alterar-Com-Condicao.json`, JSON.stringify(resultados.resultados), function (err: any) {
       if (err) {
         console.log(err)
       }

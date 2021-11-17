@@ -13,7 +13,7 @@ class GerarResultadosInserirTodosMunicipios extends GerarResultados implements I
       async () => await (new TesteInsertVariosMunicipiosPostgres()).getInMilliseconds()
     )
 
-    fs.writeFile(`src/resultados/${obterStringComHoraAtual()}_Resultados-Inserir-Todos.json`, JSON.stringify(resultados.resultados), function (err: any) {
+    fs.writeFile(`resultados/${obterStringComHoraAtual()}_Resultados-Inserir-Todos.json`, JSON.stringify(resultados.resultados), function (err: any) {
       if (err) {
         console.log(err)
       }
