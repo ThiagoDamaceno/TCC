@@ -20,7 +20,7 @@ class BuscarMunicipiosPeloNomePostgres implements IRepositorio<Municipio[] | und
       const response = await client.query(this.queryObj.selectAllQuery, this.queryObj.values)
 
       const municipios = response.rows.map(row => {
-        return new Municipio(row.codigoIbge, row.nome, row.codigoUf, row.id)
+        return new Municipio(row.nome, row.codigoUf, row.id)
       })
 
       await client.end()

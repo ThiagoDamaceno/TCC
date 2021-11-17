@@ -23,7 +23,7 @@ class BuscarMunicipiosPeloNomeMongo implements IRepositorio<Municipio[] | undefi
       const data = await cursor.toArray()
 
       const municipios = data.map(data => {
-        return new Municipio(data.codigoIbge, data.nome, data.codigoUf, data.id)
+        return new Municipio(data.nome, data.codigoUf, data.id)
       })
 
       await clienteMongo.close()

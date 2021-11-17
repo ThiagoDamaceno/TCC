@@ -10,10 +10,9 @@ class InserirVariosMunicipiosPostgres implements IRepositorio<void> {
     let valuesInsert = ''
     municipios.forEach((_municipio, i) => {
       let string = `(
-        $${(i * 4) + 1}, 
-        $${(i * 4) + 2}, 
-        $${(i * 4) + 3},
-        $${(i * 4) + 4}
+        $${(i * 3) + 1}, 
+        $${(i * 3) + 2}, 
+        $${(i * 3) + 3}
       )`
 
       if (i !== municipios.length - 1) { string += ', ' }
@@ -22,13 +21,12 @@ class InserirVariosMunicipiosPostgres implements IRepositorio<void> {
     })
 
     const insertQuery = `
-        INSERT INTO ${RepositorioMunicipios.SCHEMA_NAME} (id, codigoIbge, nome, codigoUf) values ${valuesInsert}
+        INSERT INTO ${RepositorioMunicipios.SCHEMA_NAME} (id, nome, codigoUf) values ${valuesInsert}
       `
 
     const values: string[] = []
     municipios.forEach(municipio => {
       values.push(municipio.id!)
-      values.push(municipio.codigoIbge.toString())
       values.push(municipio.nome)
       values.push(municipio.codigoUf.toString())
     })

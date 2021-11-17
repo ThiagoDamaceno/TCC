@@ -1,1 +1,1 @@
-{"numeroDeRepeticoesDoTeste":10,"tipoDoTeste":"Buscar Municipios com condicao","resultados":[{"sgbd":"mongo","resultadosEmMilisegundos":[8,6,6,14,8,9,10,9,6,6],"media":8.2},{"sgbd":"postgres","resultadosEmMilisegundos":[26,21,30,28,26,26,25,22,22,24],"media":25}]}
+{"numeroDeRepeticoesDoTeste":10,"tipoDoTeste":"Buscar Municipios com condicao","resultados":[{"sgbd":"mongo","resultadosEmMilissegundos":[8,6,6,14,8,9,10,9,6,6],"media":8.2},{"sgbd":"postgres","resultadosEmMilissegundos":[26,21,30,28,26,26,25,22,22,24],"media":25}]}

@@ -8,12 +8,12 @@ abstract class GerarResultados {
       {
         sgbd: 'mongo',
         // eslint-disable-next-line no-array-constructor
-        resultadosEmMilisegundos: Array()
+        resultadosEmMilissegundos: Array()
       },
       {
         sgbd: 'postgres',
         // eslint-disable-next-line no-array-constructor
-        resultadosEmMilisegundos: Array()
+        resultadosEmMilissegundos: Array()
       }
     ]
     console.log()
@@ -24,8 +24,8 @@ abstract class GerarResultados {
 
       const resultadoMongo = await funcaoTesteMongo()
       const resuldadoPostgres = await funcaoTestePostgres()
-      resultadosTestes[0].resultadosEmMilisegundos.push(resultadoMongo)
-      resultadosTestes[1].resultadosEmMilisegundos.push(resuldadoPostgres)
+      resultadosTestes[0].resultadosEmMilissegundos.push(resultadoMongo)
+      resultadosTestes[1].resultadosEmMilissegundos.push(resuldadoPostgres)
     }
     console.log('100%')
     return new Resultado(tipoDoTeste, resultadosTestes)

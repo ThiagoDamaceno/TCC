@@ -10,7 +10,6 @@ class CriarMunicipios {
       const createTableCommand = `
         CREATE TABLE IF NOT EXISTS ${RepositorioMunicipios.SCHEMA_NAME} (
           id VARCHAR(255) PRIMARY KEY,
-          codigoIbge VARCHAR(255) NOT NULL,
           nome VARCHAR(255) NOT NULL,
           codigoUf INT NOT NULL
         );

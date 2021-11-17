@@ -1,1 +1,1 @@
-{"numeroDeRepeticoesDoTeste":10,"tipoDoTeste":"Buscar Estado pelo municipio","resultados":[{"sgbd":"mongo","resultadosEmMilisegundos":[76,76,76,75,76,78,73,91,77,92],"media":79},{"sgbd":"postgres","resultadosEmMilisegundos":[26,21,29,22,26,22,22,23,24,29],"media":24.4}]}
+{"numeroDeRepeticoesDoTeste":10,"tipoDoTeste":"Buscar Estado pelo municipio","resultados":[{"sgbd":"mongo","resultadosEmMilissegundos":[76,76,76,75,76,78,73,91,77,92],"media":79},{"sgbd":"postgres","resultadosEmMilissegundos":[26,21,29,22,26,22,22,23,24,29],"media":24.4}]}

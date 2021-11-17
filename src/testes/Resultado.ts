@@ -4,7 +4,7 @@ class Resultado {
     tipoDoTeste: string,
     resultados: {
       sgbd: string,
-      resultadosEmMilisegundos: number[],
+      resultadosEmMilissegundos: number[],
       media: number
     }[]
   }
@@ -12,22 +12,22 @@ class Resultado {
   // eslint-disable-next-line no-useless-constructor
   constructor (tipoDoTeste: string, resultados: {
     sgbd: string,
-    resultadosEmMilisegundos: number[]
+    resultadosEmMilissegundos: number[]
   }[]) {
     const resultadosRetorno = resultados.map(resultado => {
-      let somaMilisegundos = 0
-      resultado.resultadosEmMilisegundos.forEach(milisegundo => {
-        somaMilisegundos += milisegundo
+      let somaMilissegundos = 0
+      resultado.resultadosEmMilissegundos.forEach(milissegundo => {
+        somaMilissegundos += milissegundo
       })
-      const media = somaMilisegundos / resultado.resultadosEmMilisegundos.length
+      const media = somaMilissegundos / resultado.resultadosEmMilissegundos.length
       return {
         sgbd: resultado.sgbd,
-        resultadosEmMilisegundos: resultado.resultadosEmMilisegundos,
+        resultadosEmMilissegundos: resultado.resultadosEmMilissegundos,
         media
       }
     })
     this.resultados = {
-      numeroDeRepeticoesDoTeste: resultados[0].resultadosEmMilisegundos.length,
+      numeroDeRepeticoesDoTeste: resultados[0].resultadosEmMilissegundos.length,
       tipoDoTeste,
       resultados: resultadosRetorno
     }

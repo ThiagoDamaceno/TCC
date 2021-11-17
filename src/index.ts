@@ -5,10 +5,6 @@ import { PrepararAmbiente } from './testes/PrepararAmbiente'
 import { GerarResultadosBuscarMunicipiosComCondicao } from './testes/GerarResultados/GerarResultadosBuscarMunicipiosComCondicao'
 import { GerarResultadosAlterarMunicipiosComCondicao } from './testes/GerarResultados/GerarResultadosAlterarMunicipiosComCondicao'
 import { GerarResultadoBuscarEstadoPeloMunicipio } from './testes/GerarResultados/GerarResultadoBuscarEstadoPeloMunicipio'
-import { BuscarEstadoPeloNomeDoMunicipioMongo } from './repositorios/mongo/implementacoes/estados/BuscarEstadoPeloNomeDoMunicipioMongo'
-import { BuscarEstadoPeloNomeDoMunicipioPostgres } from './repositorios/postgres/implementacoes/estados/BuscarEstadoPeloNomeDoMunicipioPostgres'
-import { TesteBuscarComRelacionamentosMongo } from './testes/buscarComRelacionamentos/Estados/TesteBuscarComRelacionamentosMongo'
-import { TesteBuscarComRelacionamentosPostgres } from './testes/buscarComRelacionamentos/Estados/TesteBuscarComRelacionamentosPostgres'
 
 async function init () {
   console.clear()
@@ -20,7 +16,6 @@ async function init () {
 
   await PrepararAmbiente.criarEsquemasSeNaoExistirem()
   await PrepararAmbiente.truncateTodosOsDados()
-  await PrepararAmbiente.inserirTodosOsDados()
 
   console.log('Estruturas criadas')
   console.log('')
