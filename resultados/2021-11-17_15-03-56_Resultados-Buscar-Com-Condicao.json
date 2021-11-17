@@ -1,0 +1,1 @@
+{"numeroDeRepeticoesDoTeste":10,"tipoDoTeste":"Buscar Municipios com condicao","resultados":[{"sgbd":"mongo","resultadosEmMilissegundos":[6,5,6,6,6,5,5,9,5,6],"media":5.9},{"sgbd":"postgres","resultadosEmMilissegundos":[20,20,24,20,19,22,20,24,20,19],"media":20.8}]}

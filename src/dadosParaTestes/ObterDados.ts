@@ -9,7 +9,6 @@ class ObterDados {
 
     municipiosFromJson.forEach(
       municipio => municipios.push(new Municipio(
-        municipio.codigo_ibge,
         municipio.nome,
         municipio.codigo_uf
       ))

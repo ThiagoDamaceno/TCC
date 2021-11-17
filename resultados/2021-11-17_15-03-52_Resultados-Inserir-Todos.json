@@ -1,0 +1,1 @@
+{"numeroDeRepeticoesDoTeste":10,"tipoDoTeste":"Inserir Todos os Municipios","resultados":[{"sgbd":"mongo","resultadosEmMilissegundos":[86,59,51,51,56,56,49,56,49,52],"media":56.5},{"sgbd":"postgres","resultadosEmMilissegundos":[54,51,44,52,49,47,45,46,45,44],"media":47.7}]}
