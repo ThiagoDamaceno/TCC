@@ -40,7 +40,7 @@ docker-compose up
 
 <br>
 
-### Instalando dependências do nodejs / Instaling nodejs dependencies
+### Instalando dependências do nodejs / installing nodejs dependencies
 
 ``
 yarn install
