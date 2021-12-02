@@ -1,4 +1,4 @@
-# Resumo
+# Resumo / Abstract
 
 Este artigo tem como objetivo comparar a performance dos sistemas gerenciadores de banco de
 dados (SGBDs) PostgreSQL e MongoDB, analisando as principais operações de persistência
@@ -10,8 +10,21 @@ testes realizados, pôde-se notar que o PostgreSQL é mais performático na cons
 relacionados e em inserções, já o MongoDB se sobressai em operações que envolvam alguma
 condição ou filtro de busca, sejam elas consultas, alterações ou exclusões.
 
+/ 
 
-## Dependências
+This article aims to compare the performance of the Databases management systems (DBMSs)
+PostgreSQL and MongoDB, analysing the main data persistence operations. Aiming at knowing
+the main approaches used by the relational and document-oriented DBMSs of this article, was
+revised some related concepts of relational and document-oriented DBMSs. To make the
+performance analyses, a test enviromment was built using the Typescript programming language,
+with the objective of automate the analyzes and generate de results. Throught the executed tests, it
+could be noted that the PostgreSQL is more performative in data relational queries and insertions,
+already the MongoDB stands out in oparations that contain some condition or search filter, wheter
+in queries, updates or deletes.
+
+<br>
+
+## Dependências / Dependencies
 - nodejs
 - npm ou yarn
 - docker
@@ -19,7 +32,7 @@ condição ou filtro de busca, sejam elas consultas, alterações ou exclusões.
 
 <br>
 
-### Iniciando os containers dos bancos de dados
+### Iniciando os containers dos bancos de dados / Initializing the databases containers
 
 ``
 docker-compose up
@@ -27,13 +40,13 @@ docker-compose up
 
 <br>
 
-### Instalando dependências do nodejs
+### Instalando dependências do nodejs / Instaling nodejs dependencies
 
 ``
 yarn install
 ``
 
-ou
+ou / or
 
 ``
 npm install
@@ -41,13 +54,13 @@ npm install
 
 <br>
 
-### Executando o projeto
+### Executando o projeto / Running the project
 
 ``
 yarn start
 ``
 
-ou
+ou / or
 
 ``
 npm start
