@@ -65,3 +65,14 @@ ou / or
 ``
 npm start
 ``
+<br>
+
+## Resultados em Milissegundos / Results in Milliseconds
+<div align="center">
+  <img src="https://i.ibb.co/hB6STZ3/RESULTADO-RESULTS.png" alt="RESULTADOS / RESULTS"/>
+</div>
+
+<br>
+<div align="center">
+  <img src="https://i.ibb.co/8chqYwV/RESULTADO-RESULTS-GRAFICO.png" alt="GRÁFICO / CHART"/>
+</div>
