@@ -7,7 +7,7 @@ foram revistos alguns conceitos referentes a SGBDs relacionais e orientados a do
 Para realizar as análises de performance, um ambiente de testes foi construído com a linguagem
 de programação Typescript, visando automatizar as análises e gerar os resultados. Através dos
 testes realizados, pôde-se notar que o PostgreSQL é mais performático na consulta de dados
-relacionados e em inserções, já o MongoDB se sobressai em operações que envolvam alguma
+relacionados e em inserções. O MongoDB, por outro lado, se sobressai em operações que envolvam alguma
 condição ou filtro de busca, sejam elas consultas, alterações ou exclusões.
 
 / 
@@ -16,17 +16,17 @@ This article aims to compare the performance of the Databases management systems
 PostgreSQL and MongoDB, analysing the main data persistence operations. Aiming at knowing
 the main approaches used by the relational and document-oriented DBMSs of this article, was
 revised some related concepts of relational and document-oriented DBMSs. To make the
-performance analyses, a test enviromment was built using the Typescript programming language,
-with the objective of automate the analyzes and generate de results. Throught the executed tests, it
-could be noted that the PostgreSQL is more performative in data relational queries and insertions,
-already the MongoDB stands out in oparations that contain some condition or search filter, wheter
+performance analyses, a test environment was built using the Typescript programming language,
+with the objective of automate the analyzes and generate de results. Through the executed tests, it
+could be noted that the PostgreSQL is more performative in data relational queries and insertions.
+The MongoDB, on the other hand, stands out in operations that involve some condition or search filter, whether
 in queries, updates or deletes.
 
 <br>
 
 ## Dependências / Dependencies
 - nodejs
-- npm ou yarn
+- npm ou / or yarn
 - docker
 - docker-compose
 
