@@ -26,7 +26,7 @@ in queries, updates or deletes.
 
 ## Dependências / Dependencies
 - nodejs
-- npm ou yarn
+- npm ou / or yarn
 - docker
 - docker-compose
 
