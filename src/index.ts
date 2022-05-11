@@ -45,7 +45,7 @@ async function init () {
   console.log('')
 
   console.log('--------------')
-  console.log('Testes realiazados com sucesso')
+  console.log('Testes realizados com sucesso')
 }
 
 init()
